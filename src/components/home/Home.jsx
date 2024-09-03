@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../sidebar/Sidebar';
-import Ads from '../ads/Ads';
+
 import Chat from '../chat/Chat';
 import './home.css';
 import { motion } from 'framer-motion';
@@ -45,7 +45,7 @@ const Home = () => {
         <Chat messages={messages} />
       </motion.div>
       <div className='ads-container'>
-        <Ads />
+   
       </div>
     </div>
   );
