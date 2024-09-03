@@ -1,0 +1,77 @@
+.textbox-container {
+  position: relative;
+  bottom: 20px;
+  width: 87%;
+  height: 45px;
+  background-color: #585757;
+  border-radius: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  
+}
+
+.sendimg {
+  width: 35px;
+  height: 35px;
+}
+
+.textbox-input {
+  background-color: #585757;
+  width: calc(100% - 60px);
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.textbox-container form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textbox-container button {
+  background-color: #585757;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textbox-container button:hover {
+  background-color: #242424;
+}
+
+@media (max-width: 768px) {
+
+  .textbox-container{
+    margin: 0 2%;
+    width: 100%;
+    height: 50px;
+    padding: 8px 12px;
+    margin-left: -20px;
+   
+  }
+
+  .textbox-input {
+    width: calc(100% - 54px);
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .sendimg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .textbox-container button {
+    width: 44px;
+    height: 44px;
+  }
+
+
+}

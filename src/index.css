@@ -1,0 +1,17 @@
+:root {
+ 
+
+  color-scheme: light dark;
+
+  background-color: #242424;
+  margin-left: 0%;
+
+  
+}
+
+@media (max-width: 768px) {
+  .chatbot-container { 
+    display: none !important; 
+  }
+}
+
