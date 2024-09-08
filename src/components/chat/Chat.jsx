@@ -43,7 +43,7 @@ const ChatComponent = ({ messages = [] }) => {
 
         setMessages((prevMessages) => [
           ...prevMessages,
-          { text: result.text.kwargs.content || 'No answer received', type: 'bot' },
+          { text: result.text?.kwargs?.content || 'No answer received', type: 'bot' },
         ]);
       } catch (error) {
         console.error('Error:', error);
