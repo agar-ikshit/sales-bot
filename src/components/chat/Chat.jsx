@@ -24,7 +24,7 @@ const ChatComponent = ({ messages = [] }) => {
       setLoading(true); // set loading to true
       try {
         const response = await fetch(
-          'https://diabclwl.cloud.sealos.io/api/v1/prediction/205039ea-9d1e-464a-97d8-a5ce6cbdafe3',
+          'https://backend-theta-eosin.vercel.app/api/generateResponse',
           {
             method: 'POST',
             headers: {
@@ -43,7 +43,7 @@ const ChatComponent = ({ messages = [] }) => {
 
         setMessages((prevMessages) => [
           ...prevMessages,
-          { text: result.text || 'No answer received', type: 'bot' },
+          { text: result.kwargs.content || 'No answer received', type: 'bot' },
         ]);
       } catch (error) {
         console.error('Error:', error);
