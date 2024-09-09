@@ -1,27 +1,28 @@
 import React, { useEffect, useRef, memo, useState } from 'react';
 import TextBox from '../input/Textbox';
 import './chat.css';
-import LoadingMessage from '../loading/Loading'; // import the LoadingMessage component
+import LoadingMessage from '../loading/Loading'; // Import the LoadingMessage component
 
 const ChatComponent = ({ messages = [] }) => {
   const chatEndRef = useRef(null);
   const [userMessages, setMessages] = useState(messages);
-  const [loading, setLoading] = useState(false); // state for loading
+  const [loading, setLoading] = useState(false); // State for loading
 
   useEffect(() => {
-    if (userMessages.length === 0) {
+    // Initialize with a welcome message if userMessages is empty and messages prop is not empty
+    if (userMessages.length === 0 && messages.length === 0) {
       setMessages([{
         text: "Hi there, how can I help you?",
         type: 'bot'
       }]);
     }
-  }, [userMessages]);
+  }, [userMessages, messages]);
 
   const handleSendMessage = async (messageText, type) => {
     setMessages((prevMessages) => [...prevMessages, { text: messageText, type }]);
 
     if (type === 'user') {
-      setLoading(true); // set loading to true
+      setLoading(true); // Set loading to true
       try {
         const response = await fetch(
           'https://backend-theta-eosin.vercel.app/api/generateResponse',
@@ -30,7 +31,7 @@ const ChatComponent = ({ messages = [] }) => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message: messageText }),
+            body: JSON.stringify({ message: messageText }), 
           }
         );
 
@@ -39,11 +40,11 @@ const ChatComponent = ({ messages = [] }) => {
         }
 
         const result = await response.json();
-        console.log('API response:', result); // Log the result to inspect its structure
+        console.log('API response:', result); 
 
         setMessages((prevMessages) => [
           ...prevMessages,
-          { text: result.text?.kwargs?.content || 'No answer received', type: 'bot' },
+          { text: result.text || 'No answer received', type: 'bot' },
         ]);
       } catch (error) {
         console.error('Error:', error);
@@ -58,7 +59,7 @@ const ChatComponent = ({ messages = [] }) => {
           { text: errorMessage, type: 'bot' },
         ]);
       } finally {
-        setLoading(false); // set loading to false
+        setLoading(false); // Set loading to false
       }
     }
   };
@@ -72,13 +73,13 @@ const ChatComponent = ({ messages = [] }) => {
       <div className="chat-display" aria-live="polite">
         {userMessages.map((message, index) => (
           <div 
-            key={`${message.text}-${index}`} 
+            key={`${message.text}-${index}`} // Ensure text is unique or use another unique identifier
             className={`message ${message.type}`}
           >
             {message.text}
           </div>
         ))}
-        {loading && <LoadingMessage />} {/* Show loading message */}
+        {loading && <LoadingMessage />} 
         <div ref={chatEndRef} />
       </div>
       
